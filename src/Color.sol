@@ -6,6 +6,19 @@ import "./Create.sol";
 
 library LibColor {
 
+    function toBytes3(Color c) internal pure returns (bytes3) {
+        return Color.unwrap(c);
+    }
+
+    function toRGB(Color c) internal pure returns (uint8 red, uint8 green, uint8 blue) {
+        uint24 i = uint24(Color.unwrap(c));
+        return (
+            uint8(i >> 16),
+            uint8(i >> 8),
+            uint8(i)
+        );
+    }
+
     // https://stackoverflow.com/a/69316712
     function toString(Color c) internal pure returns(string memory){
         uint24 i = uint24(Color.unwrap(c));
