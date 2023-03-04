@@ -10,7 +10,7 @@ uint8 constant PREFIXED_SHORT_FORMAT_HEX_LENGTH = SHORT_FORMAT_HEX_LENGTH + 1;
 bytes1 constant HEX_CODE_SYMBOL = 0x23;
 
 error INVALID_HEX_STRING();
-error CHARACTER(bytes1 _character);
+error INVALID_HEX_CHARACTER(bytes1 _character);
 
 function newColorFromRGB(uint8 _red, uint8 _green, uint8 _blue) pure returns (Color) {
     return Color.wrap(
@@ -133,7 +133,7 @@ function getHexFromASCII(uint8 _index) pure returns(uint256){
     } else if (_index >= 65 && _index <= 70) {
         _index -= 55;
     } else {
-        revert CHARACTER(bytes1(_index));
+        revert INVALID_HEX_CHARACTER(bytes1(_index));
     }
 
     return _index;
