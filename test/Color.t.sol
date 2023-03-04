@@ -42,6 +42,11 @@ contract ColorTest is Test {
             newColorFromRGBString("654321").toString(),
             "654321"
         );
+
+        assertEq(
+            newColorFromRGBString("AAAAAA").toString(),
+            "AAAAAA"
+        );
     }
 
     function testFromString_longFormatHexPrefixed() public {
@@ -53,6 +58,11 @@ contract ColorTest is Test {
         assertEq(
             newColorFromRGBString("#654321").toString(),
             "654321"
+        );
+
+        assertEq(
+            newColorFromRGBString("#AAAAAA").toString(),
+            "AAAAAA"
         );
     }
 
@@ -66,6 +76,11 @@ contract ColorTest is Test {
             newColorFromRGBString("321").toString(),
             "332211"
         );
+
+        assertEq(
+            newColorFromRGBString("AAA").toString(),
+            "AAAAAA"
+        );
     }
 
     function testFromString_shortFormatHexPrefixed() public {
@@ -77,6 +92,11 @@ contract ColorTest is Test {
         assertEq(
             newColorFromRGBString("#321").toString(),
             "332211"
+        );
+
+        assertEq(
+            newColorFromRGBString("#AAA").toString(),
+            "AAAAAA"
         );
     }
 
