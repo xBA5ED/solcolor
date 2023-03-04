@@ -21,14 +21,69 @@ contract ColorTest is Test {
         assertEq(_blue,blue);
     }
 
-    function testFromBytes3() view public {
-        Color _color = newColorFromRGBString("FF00FF");
+    // function testFromBytes3() view public {
+    //     Color _color = newColorFromRGBString("FF00FF");
 
-        console.log(
-            string.concat(
-                "#",
-                _color.toString()
-            )
+    //     console.log(
+    //         string.concat(
+    //             "#",
+    //             _color.toString()
+    //         )
+    //     );
+    // }
+
+    function testFromString_longFormatHex() public {
+        assertEq(
+            newColorFromRGBString("123456").toString(),
+            "123456"
         );
+
+        assertEq(
+            newColorFromRGBString("654321").toString(),
+            "654321"
+        );
+    }
+
+    function testFromString_longFormatHexPrefixed() public {
+        assertEq(
+            newColorFromRGBString("#123456").toString(),
+            "123456"
+        );
+
+        assertEq(
+            newColorFromRGBString("#654321").toString(),
+            "654321"
+        );
+    }
+
+    function testFromString_shortFormatHex() public {
+        assertEq(
+            newColorFromRGBString("123").toString(),
+            "112233"
+        );
+
+        assertEq(
+            newColorFromRGBString("321").toString(),
+            "332211"
+        );
+    }
+
+    function testFromString_shortFormatHexPrefixed() public {
+        assertEq(
+            newColorFromRGBString("#123").toString(),
+            "112233"
+        );
+
+        assertEq(
+            newColorFromRGBString("#321").toString(),
+            "332211"
+        );
+    }
+
+    function testFromString_gasS() public {
+        newColorFromRGBString("123");
+    }
+      function testFromString_gasL() public {
+        newColorFromRGBString("112233");
     }
 }
