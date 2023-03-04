@@ -33,34 +33,3 @@ function newColorFromRGBString(string memory _data) pure returns (Color) {
 
     return Color.wrap(_out);
 }
-
-// // https://stackoverflow.com/a/14733008
-// function newColorFromHSV(uint8 _h, uint8 _s, uint8 _v) pure returns (Color) {
-//     if (_s == 0)
-//         return newColorFromRGB(_v, _v, _v);
-    
-//     unchecked{
-//         uint8 _region = _h / 43;
-//         uint8 _remainder = (_h - (_region * 43)) * 6;
-
-//         uint8 _p = (_v * (255 - _s)) >> 8;
-//         uint8 _q = (_v * (255 - ((_s * _remainder) >> 8))) >> 8;
-//         uint8 _t = (_v * (255 - ((_s * (255 - _remainder)) >> 8 ))) >> 8;
-
-//         if(_region <= 4){
-//             if(_region == 0){
-//                 return newColorFromRGB(_v, _t, _p);
-//             }else if(_region == 1){
-//                 return newColorFromRGB(_q, _v, _p);
-//             }else if(_region == 2){
-//             return newColorFromRGB(_p, _v, _t);
-//             }else if(_region == 3){
-//                 return newColorFromRGB(_p, _q, _v);
-//             }else if(_region == 4){
-//                 return newColorFromRGB(_t, _p, _v);
-//             }
-//         }
-
-//         return newColorFromRGB(_v, _p, _q);
-//     }
-// }

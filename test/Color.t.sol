@@ -21,8 +21,7 @@ contract ColorTest is Test {
         assertEq(_blue,blue);
     }
 
-    function testFromBytes3(bytes3 color) public {
-
+    function testFromBytes3() view public {
         Color _color = newColorFromRGBString("FF00FF");
 
         console.log(

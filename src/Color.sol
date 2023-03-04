@@ -39,7 +39,7 @@ library LibColor {
         return string(o);
     }
 
-    function uint8tohexchar(uint8 i) internal pure returns (uint8) {
+    function uint8tohexchar(uint8 i) private pure returns (uint8) {
         return (i > 9) ?
             (i + 87) : // ascii a-f
             (i + 48); // ascii 0-9
