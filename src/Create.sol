@@ -51,32 +51,32 @@ function newColorFromRGBString(string memory _string) pure returns (Color) {
             // Unrolled loop to save gas
             _color |= bytes3(
                 uint24(
-                    getHexFromASCII(uint8(_b[_pos])) << 0 * 4
+                    getHexFromASCII(uint8(_b[_pos]))
                 )
             );
             _color |= bytes3(
                 uint24(
-                    getHexFromASCII(uint8(_b[--_pos])) << 1 * 4
+                    getHexFromASCII(uint8(_b[--_pos])) << 4
                 )
             );
             _color |= bytes3(
                 uint24(
-                    getHexFromASCII(uint8(_b[--_pos])) << 2 * 4
+                    getHexFromASCII(uint8(_b[--_pos])) << 8
                 )
             );
             _color |= bytes3(
                 uint24(
-                    getHexFromASCII(uint8(_b[--_pos])) << 3 * 4
+                    getHexFromASCII(uint8(_b[--_pos])) << 12
                 )
             );
             _color |= bytes3(
                 uint24(
-                    getHexFromASCII(uint8(_b[--_pos])) << 4 * 4
+                    getHexFromASCII(uint8(_b[--_pos])) << 16
                 )
             );
             _color |= bytes3(
                 uint24(
-                    getHexFromASCII(uint8(_b[--_pos])) << 5 * 4
+                    getHexFromASCII(uint8(_b[--_pos])) << 20
                 )
             );
         }
@@ -95,27 +95,27 @@ function newColorFromRGBString(string memory _string) pure returns (Color) {
             _char = getHexFromASCII(uint8(_b[_pos]));
             _color |= bytes3(
                 uint24(
-                    _char << 0 * 4
+                    _char
                 ) | uint24(
-                    _char << 1 * 4
+                    _char << 4
                 )
             );
 
             _char = getHexFromASCII(uint8(_b[--_pos]));
             _color |= bytes3(
                 uint24(
-                    _char << 2 * 4
+                    _char << 8
                 ) | uint24(
-                    _char << 3 * 4
+                    _char << 12
                 )
             );
 
             _char = getHexFromASCII(uint8(_b[--_pos]));
             _color |= bytes3(
                 uint24(
-                    _char << 4 * 4
+                    _char << 16
                 ) | uint24(
-                    _char << 5 * 4
+                    _char << 20
                 )
             );
         }
@@ -128,12 +128,14 @@ function newColorFromRGBString(string memory _string) pure returns (Color) {
 }
 
 function getHexFromASCII(uint8 _index) pure returns(uint256){
-    if (_index >= 48 && _index <= 57) {
-        _index -= 48;
-    } else if (_index >= 65 && _index <= 70) {
-        _index -= 55;
-    } else {
-        revert INVALID_HEX_CHARACTER(bytes1(_index));
+    unchecked {
+        if (_index >= 48 && _index <= 57) {
+            _index -= 48;
+        } else if (_index >= 65 && _index <= 70) {
+            _index -= 55;
+        } else {
+            revert INVALID_HEX_CHARACTER(bytes1(_index));
+        }
     }
 
     return _index;
