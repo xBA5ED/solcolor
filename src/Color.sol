@@ -6,10 +6,18 @@ import "./Create.sol";
 
 library LibColor {
 
+    /// @notice Transforms a RGB Color value to a bytes3.
+    /// @param c A RGB Color.
+    /// @return bytes3 Unwrapped bytes3 color value.
     function toBytes3(Color c) internal pure returns (bytes3) {
         return Color.unwrap(c);
     }
 
+    /// @notice Transforms a RGB Color to three uint8 values.
+    /// @param c A bytes3 encoded RGB value
+    /// @return uint8 Red value, 0-255.
+    /// @return uint8 Green value, 0-255.
+    /// @return uint8 Blue value, 0-255
     function toRGB(Color c) internal pure returns (uint8 red, uint8 green, uint8 blue) {
         return (
             uint8(uint24(Color.unwrap(c)) >> 16),
@@ -18,7 +26,10 @@ library LibColor {
         );
     }
 
-    // https://stackoverflow.com/a/69316712
+    /// @notice Transforms a RGB Color to a string encoded Hex color.
+    /// @dev Based on https://stackoverflow.com/a/69316712
+    /// @param c A bytes3 encoded RGB value
+    /// @return string A Hex color string (e.g., "FFFFFF")
     function toString(Color c) internal pure returns(string memory){
         bytes memory o = new bytes(6);
         o[5] = bytes1(uint8tohexchar(uint8(uint24(Color.unwrap(c)) & 0xf)));
