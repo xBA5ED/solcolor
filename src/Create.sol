@@ -133,6 +133,8 @@ function getHexFromASCII(uint8 _index) pure returns(uint256){
             _index -= 48;
         } else if (_index >= 65 && _index <= 70) {
             _index -= 55;
+        } else if (_index >= 97 && _index <= 102){
+            _index -= 87;
         } else {
             revert INVALID_HEX_CHARACTER(bytes1(_index));
         }
