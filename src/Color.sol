@@ -15,9 +15,9 @@ library LibColor {
 
     /// @notice Transforms a RGB Color to three uint8 values.
     /// @param c A bytes3 encoded RGB value
-    /// @return uint8 Red value, 0-255.
-    /// @return uint8 Green value, 0-255.
-    /// @return uint8 Blue value, 0-255
+    /// @return red uint8 Red value, 0-255.
+    /// @return green uint8 Green value, 0-255.
+    /// @return blue uint8 Blue value, 0-255
     function toRGB(Color c) internal pure returns (uint8 red, uint8 green, uint8 blue) {
         return (
             uint8(uint24(Color.unwrap(c)) >> 16),
@@ -41,8 +41,8 @@ library LibColor {
         return string(o);
     }
 
-    // @notice Returns the ASCII character code number of the least significant digit of the Hex representation of the given uint8. 
-    // @dev For example, input `10` is `0x0A` in hex and this function returns 65, which corresponds to the ASCII symbol `A`.
+    /// @notice Returns the ASCII character code number of the least significant digit of the Hex representation of the given uint8. 
+    /// @dev For example, input `10` is `0x0A` in hex and this function returns 65, which corresponds to the ASCII symbol `A`.
     function uint8tohexchar(uint8 i) private pure returns (uint8) {
         unchecked{
             return (i > 9) ?
